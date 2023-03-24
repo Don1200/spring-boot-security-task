@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<body>
+
+<h2>Add new User</h2>
+
+<form action="save" method="post">
+    First name:<br>
+    <input type="text" name="firstName">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastName">
+    <br>
+    Age:<br>
+    <input type="text" name="age">
+    <br>
+    E-mail:<br>
+    <input type="text" name="email">
+    <br>
+    Password:<br>
+    <input type="text" name="password">
+    <br>
+
+    <p>
+        <select multiple size="2" name="roles" th:required="true" class="form-control">
+            <option
+                    th:each="role : ${roles}"
+                    th:value="${role.getRoleName()}"
+                    th:text="${role.getRoleName()}"
+                    th:selected="${role.getRoleName()}">
+            </option>
+        </select>
+    </p>
+
+
+
+
+    <input type="submit" value="save">
+</form>
+<br><a th:href="@{/logout}">Logout</a>
+
+</body>
+</html>
+
+
+

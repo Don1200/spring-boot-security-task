@@ -1,10 +1,8 @@
 package com.example.spring.boot_security.configs;
 
-import com.example.spring.boot_security.service.UserService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,13 +18,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
 
-
-
     public WebSecurityConfig(@Qualifier("userDetailServiceImpl") UserDetailsService userDetailsService,
                              SuccessUserHandler successUserHandler) {
         this.userDetailsService = userDetailsService;
         this.successUserHandler = successUserHandler;
-
 
 
     }
@@ -43,13 +38,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
-                .passwordParameter ("password")
+                .passwordParameter("password")
                 .permitAll()
                 .successHandler(successUserHandler); // подключаем наш SuccessHandler для перенеправления по ролям
         http.logout()
                 .logoutSuccessUrl("/login").permitAll();
     }
-
 
 
     @Override

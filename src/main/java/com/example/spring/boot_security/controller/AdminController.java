@@ -1,6 +1,5 @@
 package com.example.spring.boot_security.controller;
 
-
 import com.example.spring.boot_security.model.Role;
 import com.example.spring.boot_security.model.User;
 import com.example.spring.boot_security.service.RoleService;
@@ -8,9 +7,15 @@ import com.example.spring.boot_security.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,7 +72,7 @@ public class AdminController {
         return "edit";
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     public String editUser(@ModelAttribute("user") User user,
                            @RequestParam(value = "roles", required = false) String[] roles) {
         Set<Role> rolesSet = new HashSet<>();
@@ -81,7 +86,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         userService.deleteUser(userService.getUserById(id));
         return "redirect:/admin";

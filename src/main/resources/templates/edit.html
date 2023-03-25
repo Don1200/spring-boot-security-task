@@ -5,45 +5,43 @@
 
 <h2>Edit</h2>
 
-<form th:method="POST" th:action="@{/admin/edit}" th:object="${user}">
-  Id:<br>
-  <input type="text" name="id" th:value="${user.getId}">
-  <br>
-  First name:<br>
-  <input type="text" name="firstName" th:value="${user.getFirstName}">
-  <br>
-  Last name:<br>
-  <input type="text" name="lastName" th:value="${user.getLastName}">
-  <br>
-  <br>
-  Age:<br>
-  <input type="text" name="age" th:value="${user.getAge}">
-  <br><br>
-  E-mail:<br>
-  <input type="text" name="email" th:value="${user.getEmail}">
-  <br><br>
-  Password:<br>
-  <input type="text" name="password" th:value="${user.getPassword}">
-  <br><br>
+<form th:method="PUT" th:action="@{/admin/edit}" th:object="${user}">
+    <br>
+    <input th:type="hidden" th:field="*{id}"/> </br>
+    First name:<br>
+    <input type="text" name="firstName" th:value="${user.getFirstName}">
+    <br>
+    Last name:<br>
+    <input type="text" name="lastName" th:value="${user.getLastName}">
+    <br>
+    <br>
+    Age:<br>
+    <input type="text" name="age" th:value="${user.getAge}">
+    <br><br>
+    E-mail:<br>
+    <input type="text" name="email" th:value="${user.getEmail}">
+    <br><br>
+    Password:<br>
+    <input type="text" name="password" th:value="${user.getPassword}">
+    <br><br>
 
-  <p>
-    <select multiple size="2" name="roles" th:required="true" class="form-control">
-      <option
-              th:each="role : ${roles}"
-              th:value="${role.getRoleName()}"
-              th:text="${role.getRoleName()}"
-              th:selected="${role.getRoleName()}">
-      </option>
-    </select>
-  </p>
+    <p>
+        <select multiple size="2" name="roles" th:required="true" class="form-control">
+            <option
+                    th:each="role : ${roles}"
+                    th:value="${role.getRoleName()}"
+                    th:text="${role.getRoleName()}"
+                    th:selected="${role.getRoleName()}">
+            </option>
+        </select>
+    </p>
 
-  <br><br>
+    <br><br>
 
-  <input type="submit" value="save">
+    <input type="submit" value="save">
 </form>
 <br>
 <a th:href="@{/logout}">Logout</a>
-
 
 
 </body>
